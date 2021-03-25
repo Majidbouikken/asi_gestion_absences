@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 class EditText extends StatefulWidget {
-  final hintText;
+  final String hintText;
+  final TextInputType textInputType;
+  final bool isPassword;
 
-  const EditText({Key key, this.hintText}) : super(key: key);
+  const EditText({Key key, this.hintText, this.textInputType, this.isPassword = false})
+      : super(key: key);
 
   @override
   _EditTextState createState() => _EditTextState();
@@ -32,7 +35,9 @@ class _EditTextState extends State<EditText> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 44,
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      alignment: Alignment.center,
       decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           border: Border.all(
@@ -42,16 +47,21 @@ class _EditTextState extends State<EditText> {
               width: 1),
           borderRadius: BorderRadius.circular(8)),
       child: TextField(
+        obscureText: widget.isPassword ? true : false,
+        enableSuggestions: widget.isPassword ? false : true,
+        autocorrect: widget.isPassword ? false : true,
         focusNode: _focusNode,
+        keyboardType: widget.textInputType,
         decoration: InputDecoration(
-            border: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            enabledBorder: InputBorder.none,
-            errorBorder: InputBorder.none,
-            disabledBorder: InputBorder.none,
-            contentPadding:
-                EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
-            hintText: this.widget.hintText),
+          border: InputBorder.none,
+          focusedBorder: InputBorder.none,
+          enabledBorder: InputBorder.none,
+          errorBorder: InputBorder.none,
+          disabledBorder: InputBorder.none,
+          contentPadding:
+              EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
+          hintText: this.widget.hintText,
+        ),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:asi_gestion_absences/view/widgets/asiButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -8,6 +9,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -18,20 +20,51 @@ class LoginPage extends StatelessWidget {
         ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         child: SafeArea(
             child: Column(
-              children: [
-                // todo: add languages
-                // todo: login forms
-                // todo: don't have an account
-                SvgPicture.asset(
-                  'assets/esi_logo.svg',
-                  width: 88,
-                  color: Theme.of(context).primaryColor,
-                ),
-                EditText(hintText: "email",),
-                EditText(hintText: "password",),
-                RaisedButton(child: Text("Log in"), onPressed: () {})
-              ],
-            )),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+              // todo: add languages
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: Text("English (United States)"),
+              ),
+              // todo: login forms
+              Column(
+                children: [
+                  SvgPicture.asset(
+                    'assets/esi_logo.svg',
+                    height: 80,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  EditText(
+                    hintText: "email",
+                    textInputType: TextInputType.emailAddress,
+                  ),
+                  EditText(
+                    hintText: "password",
+                    textInputType: TextInputType.visiblePassword,
+                    isPassword: true,
+                  ),
+                  AsiButton(
+                    title: "Log in",
+                  ),
+                  SizedBox(
+                    height: 160,
+                  )
+                ],
+              ),
+              // todo: don't have an account
+              Column(
+                children: [
+                  Divider(
+                    height: 16,
+                  ),
+                  Text("Don't have an account?"),
+                  SizedBox(
+                    height: 8,
+                  )
+                ],
+              )
+            ])),
       ),
     );
   }
