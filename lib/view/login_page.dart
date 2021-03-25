@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../controller/themeController.dart';
+import 'widgets/editText.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -13,21 +17,18 @@ class LoginPage extends StatelessWidget {
           Theme.of(context).bottomAppBarColor
         ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         child: SafeArea(
-            child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-          child: Column(
-            children: [
-              // todo : add logo
-              TextField(
-                decoration: InputDecoration(hintText: "email"),
-              ),
-              TextField(
-                decoration: InputDecoration(hintText: "password"),
-              ),
-              RaisedButton(child: Text("Log in"), onPressed: () {})
-            ],
-          ),
-        )),
+            child: Column(
+              children: [
+                SvgPicture.asset(
+                  'assets/esi_logo.svg',
+                  width: 88,
+                  color: Theme.of(context).primaryColor,
+                ),
+                EditText(hintText: "email",),
+                EditText(hintText: "password",),
+                RaisedButton(child: Text("Log in"), onPressed: () {})
+              ],
+            )),
       ),
     );
   }
