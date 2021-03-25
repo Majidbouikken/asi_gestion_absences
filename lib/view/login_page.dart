@@ -19,6 +19,9 @@ class LoginPage extends StatelessWidget {
         child: SafeArea(
             child: Column(
               children: [
+                // todo: add languages
+                // todo: login forms
+                // todo: don't have an account
                 SvgPicture.asset(
                   'assets/esi_logo.svg',
                   width: 88,
