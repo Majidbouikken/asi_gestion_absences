@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
           child: SafeArea(
             child: Stack(
               children: [
+                // todo: organize structure
                 // todo: add  title divider
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,6 +48,7 @@ class HomePage extends StatelessWidget {
                     // todo: add event
                     Row(
                       children: [
+                        // todo: add timeline
                         Container(
                           width: 120,
                           child: Padding(
