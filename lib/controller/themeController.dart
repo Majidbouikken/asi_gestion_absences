@@ -22,6 +22,32 @@ class ThemeController with ChangeNotifier {
     buttonColor: DarkColorData.red,
     cardColor: DarkColorData.card,
     dividerColor: DarkColorData.divider,
+    textTheme: TextTheme(
+      headline1: TextStyle(
+          fontFamily: 'GothicA1',
+          fontWeight: FontWeight.w500,
+          color: DarkColorData.primary,
+          fontSize: 44
+      ),
+      headline2: TextStyle(
+          fontFamily: 'GothicA1',
+          fontWeight: FontWeight.w200,
+          color: DarkColorData.accent,
+          fontSize: 44
+      ),
+      headline3: TextStyle(
+          fontFamily: 'GothicA1',
+          fontWeight: FontWeight.w500,
+          color: DarkColorData.primary,
+          fontSize: 16
+      ),
+      button: TextStyle(
+          fontFamily: 'GothicA1',
+          fontWeight: FontWeight.w500,
+          color: DarkColorData.primary,
+          fontSize: 20
+      ),
+    )
   );
 }
 
