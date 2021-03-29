@@ -1,119 +1,135 @@
-import 'package:asi_gestion_absences/model/student.dart';
+import 'package:asi_gestion_absences/view/widgets/eventWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../model/event.dart';
 
 class EventList extends StatelessWidget {
-  final List<Event> events;
+  final List<Event> todayEvents;
+  final double _spaceBetweenDividers = 1.6;
 
-  const EventList({Key key, this.events}) : super(key: key);
+  const EventList({Key key, this.todayEvents}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: _eventListBuilder(context, events),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: 120,
+          child: Column(
+            children: _timeStepBuilder(
+                context, todayEvents.first.start, todayEvents.last.end),
+          ),
+        ),
+        Column(
+          children: _eventListBuilder(context, todayEvents),
+        )
+      ],
     );
   }
 
-  // returns a list of widgets to display Events horizontally
-  List<Widget> _eventListBuilder(BuildContext context, List<Event> list) {
+  // builds time steps
+  List<Widget> _timeStepBuilder(
+      BuildContext context, DateTime startTime, DateTime endTime) {
     List<Widget> _list = [];
-    for (int i = 0; i < list.length; i++) {
-      Duration duration = list[i].end.difference(list[i].start);
-      _list.add(Container(
-        height: (12 * duration.inMinutes / 10),
-        width: MediaQuery.of(context).size.width - 120,
-        padding: EdgeInsets.symmetric(horizontal: 32),
-        color: (i == 0)
-            ? Theme.of(context).accentColor.withOpacity(0.2)
-            : Colors.transparent,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              list[i].summary,
-              style: Theme.of(context).textTheme.headline3,
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  list[i].start.hour.toString() +
-                      ":" +
-                      list[i].start.minute.toString() +
-                      " - " +
-                      list[i].end.hour.toString() +
-                      ":" +
-                      list[i].end.minute.toString(),
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                Text(
-                  (() {
-                    // calculate difference between start and end
-                    String durationString = "";
-                    int minutes = (duration.inMinutes - duration.inHours * 60);
-                    durationString = duration.inHours.toString() +
-                        "h " +
-                        minutes.toString() +
-                        "m";
-                    return durationString;
-                  }()),
-                  style: Theme.of(context).textTheme.headline6,
-                )
-              ],
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Row(
-              children: _studentsAvatarsBuilder(
-                  context, Student.getDisplayNames(list[i].attendees), 2),
-            )
-          ],
+    int _start = startTime.minute - (startTime.minute.remainder(15));
+    int _duration = endTime.difference(startTime).inMinutes;
+    int _end = (_duration % 15 == 0)
+        ? _duration
+        : _duration + (15 - endTime.minute.remainder(15));
+    int _steps = (_end - _start) ~/ 15 + 1;
+    int _startWithAnHourOrDivider = (() {
+      if (_start % 60 == 0)
+        return 0;
+      else if (_start % 45 == 0)
+        return 1;
+      else if (_start % 30 == 0)
+        return 2;
+      else if (_start % 15 == 0) return 3;
+    }());
+    // divider types
+    Column _smallStep = Column(
+      children: [
+        Container(
+          width: 16,
+          height: _spaceBetweenDividers*7.5,
         ),
-      ));
+        Container(
+          width: 16,
+          height: _spaceBetweenDividers*7.5,
+          decoration: BoxDecoration(
+              border: Border(
+                  top: BorderSide(
+                      color: Theme.of(context).accentColor, width: 1))),
+        )
+      ],
+    );
+    Column _largeStep = Column(
+      children: [
+        Container(
+          width: 32,
+          height: _spaceBetweenDividers*7.5,
+        ),
+        Container(
+          width: 32,
+          height: _spaceBetweenDividers*7.5,
+          decoration: BoxDecoration(
+              border: Border(
+                  top: BorderSide(
+                      color: Theme.of(context).accentColor, width: 1))),
+        )
+      ],
+    );
+    // an index to render the fitted divider type
+    int _index = _startWithAnHourOrDivider;
+    for (int i = 0; i < _steps; i++) {
+      debugPrint(_index.toString());
+      _list.add((() {
+        if (_index == 0) {
+          _index = 1;
+          return Container(
+            width: 64,
+            height: _spaceBetweenDividers*15,
+            alignment: Alignment.center,
+            child: Text(
+              ((_startWithAnHourOrDivider==0)?startTime.hour+i~/4:startTime.hour+i~/4+1).toString() + ":00",
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          );
+        } else if (_index == 1) {
+          _index = 2;
+          return _smallStep;
+        } else if (_index == 2) {
+          _index = 3;
+          return _largeStep;
+        } else if (_index == 3) {
+          _index = 0;
+          return _smallStep;
+        }
+      }()));
     }
     return _list;
   }
 
   // returns a list of widgets to display Events horizontally
-  List<Widget> _studentsAvatarsBuilder(
-      BuildContext context, List<String> list, int maxDisplay) {
-    List<Widget> _list = [];
-    for (int i = 0; (i < list.length) && (i < maxDisplay); i++) {
-      _list.add(
-        Container(
-          height: 24,
-          width: 24,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: Colors.lightBlue, borderRadius: BorderRadius.circular(12)),
-          child: Text(
-            list[i].substring(0, 1),
-            style: Theme.of(context).textTheme.headline5,
-          ),
-        ),
-      );
-      _list.add(SizedBox(
-        width: 8,
-      ));
+  List<Widget> _eventListBuilder(BuildContext context, List<Event> list) {
+    List<Widget> _list = [
+      SizedBox(
+        height: _spaceBetweenDividers*7.5,
+      )
+    ];
+    for (int i = 0; i < list.length; i++) {
+      if (i == 0 && list.first.start.minute.remainder(15) != 0)
+        _list
+            .add(SizedBox(height: _spaceBetweenDividers * list.first.start.minute.remainder(15)));
+      else if (i != 0)
+        _list.add(SizedBox(
+          height: _spaceBetweenDividers *
+              ((list[i].start.hour * 60 + list[i].start.minute) -
+                  (list[i - 1].end.hour * 60 + list[i - 1].end.minute)),
+        ));
+      _list.add(EventWidget(event: list[i], spaceBetweenDividers: _spaceBetweenDividers, index: i,));
     }
-    if (maxDisplay < list.length)
-      _list.add(
-        Container(
-          height: 24,
-          width: 24,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: Colors.black45, borderRadius: BorderRadius.circular(12)),
-          child: Text("+" + (list.length - maxDisplay).toString()),
-        ),
-      );
     return _list;
   }
 }
