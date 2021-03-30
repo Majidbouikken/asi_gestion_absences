@@ -1,11 +1,11 @@
 import 'package:asi_gestion_absences/controller/themeController.dart';
-import 'package:asi_gestion_absences/view/home_page.dart';
-import 'package:asi_gestion_absences/view/login_page.dart';
+import 'file:///C:/Users/Abdelmadjid/AndroidStudioProjects/asi_gestion_absences/lib/view/pages/home_page.dart';
+import 'file:///C:/Users/Abdelmadjid/AndroidStudioProjects/asi_gestion_absences/lib/view/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 
-import 'view/login_page.dart';
+import 'view/pages/login_page.dart';
 
 void main(){
   // to prevent banding and color limitation to 32 bits

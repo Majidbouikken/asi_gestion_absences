@@ -2,14 +2,13 @@ import 'package:asi_gestion_absences/view/widgets/asiButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../controller/themeController.dart';
-import 'widgets/editText.dart';
+import '../../controller/themeController.dart';
+import '../widgets/editText.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
