@@ -12,6 +12,7 @@ class DailyEventWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Column(
           children: [
@@ -52,7 +53,7 @@ class DailyEventWidget extends StatelessWidget {
       duration = list[i].end.difference(list[i].start);
       _list.add(Container(
         width: MediaQuery.of(context).size.width - 120,
-        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+        padding: (i==0)?EdgeInsets.only(right: 32, left: 32, bottom: 16):EdgeInsets.symmetric(vertical: 16, horizontal: 32),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
