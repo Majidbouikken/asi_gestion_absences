@@ -41,6 +41,24 @@ class ThemeController with ChangeNotifier {
           color: DarkColorData.primary,
           fontSize: 16
       ),
+      headline4: TextStyle(
+          fontFamily: 'GothicA1',
+          fontWeight: FontWeight.w500,
+          color: DarkColorData.accent,
+          fontSize: 16
+      ),
+      headline5: TextStyle(
+          fontFamily: 'GothicA1',
+          fontWeight: FontWeight.w500,
+          color: DarkColorData.primary,
+          fontSize: 12
+      ),
+      headline6: TextStyle(
+          fontFamily: 'GothicA1',
+          fontWeight: FontWeight.w500,
+          color: DarkColorData.accent,
+          fontSize: 12
+      ),
       button: TextStyle(
           fontFamily: 'GothicA1',
           fontWeight: FontWeight.w500,
