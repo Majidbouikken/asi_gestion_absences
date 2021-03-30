@@ -83,7 +83,6 @@ class EventList extends StatelessWidget {
     // an index to render the fitted divider type
     int _index = _startWithAnHourOrDivider;
     for (int i = 0; i < _steps; i++) {
-      debugPrint(_index.toString());
       _list.add((() {
         if (_index == 0) {
           _index = 1;
