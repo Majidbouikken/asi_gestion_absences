@@ -33,11 +33,12 @@ class EventList extends StatelessWidget {
       BuildContext context, DateTime startTime, DateTime endTime) {
     List<Widget> _list = [];
     int _start = startTime.minute - (startTime.minute.remainder(15));
-    int _duration = endTime.difference(startTime).inMinutes;
+    int _duration = (endTime.hour * 60 + endTime.minute) -
+        (startTime.hour * 60 + startTime.minute);
     int _end = (_duration % 15 == 0)
         ? _duration
         : _duration + (15 - endTime.minute.remainder(15));
-    int _steps = (_end - _start) ~/ 15 + 1;
+    int _steps = (_end - _start) ~/ 15 + 3;
     int _startWithAnHourOrDivider = (() {
       if (_start % 60 == 0)
         return 0;
@@ -52,11 +53,11 @@ class EventList extends StatelessWidget {
       children: [
         Container(
           width: 16,
-          height: _spaceBetweenDividers*7.5,
+          height: _spaceBetweenDividers * 7.5,
         ),
         Container(
           width: 16,
-          height: _spaceBetweenDividers*7.5,
+          height: _spaceBetweenDividers * 7.5,
           decoration: BoxDecoration(
               border: Border(
                   top: BorderSide(
@@ -68,11 +69,11 @@ class EventList extends StatelessWidget {
       children: [
         Container(
           width: 32,
-          height: _spaceBetweenDividers*7.5,
+          height: _spaceBetweenDividers * 7.5,
         ),
         Container(
           width: 32,
-          height: _spaceBetweenDividers*7.5,
+          height: _spaceBetweenDividers * 7.5,
           decoration: BoxDecoration(
               border: Border(
                   top: BorderSide(
@@ -88,10 +89,14 @@ class EventList extends StatelessWidget {
           _index = 1;
           return Container(
             width: 64,
-            height: _spaceBetweenDividers*15,
+            height: _spaceBetweenDividers * 15,
             alignment: Alignment.center,
             child: Text(
-              ((_startWithAnHourOrDivider==0)?startTime.hour+i~/4:startTime.hour+i~/4+1).toString() + ":00",
+              ((_startWithAnHourOrDivider == 0)
+                          ? startTime.hour + i ~/ 4
+                          : startTime.hour + i ~/ 4 + 1)
+                      .toString() +
+                  ":00",
               style: Theme.of(context).textTheme.headline6,
             ),
           );
@@ -114,20 +119,25 @@ class EventList extends StatelessWidget {
   List<Widget> _eventListBuilder(BuildContext context, List<Event> list) {
     List<Widget> _list = [
       SizedBox(
-        height: _spaceBetweenDividers*7.5,
+        height: _spaceBetweenDividers * 7.5,
       )
     ];
     for (int i = 0; i < list.length; i++) {
       if (i == 0 && list.first.start.minute.remainder(15) != 0)
-        _list
-            .add(SizedBox(height: _spaceBetweenDividers * list.first.start.minute.remainder(15)));
+        _list.add(SizedBox(
+            height:
+                _spaceBetweenDividers * list.first.start.minute.remainder(15)));
       else if (i != 0)
         _list.add(SizedBox(
           height: _spaceBetweenDividers *
               ((list[i].start.hour * 60 + list[i].start.minute) -
                   (list[i - 1].end.hour * 60 + list[i - 1].end.minute)),
         ));
-      _list.add(EventWidget(event: list[i], spaceBetweenDividers: _spaceBetweenDividers, index: i,));
+      _list.add(EventWidget(
+        event: list[i],
+        spaceBetweenDividers: _spaceBetweenDividers,
+        index: i,
+      ));
     }
     return _list;
   }

@@ -19,13 +19,11 @@ class EventWidget extends StatelessWidget {
       width: MediaQuery.of(context).size.width - 120,
       padding: EdgeInsets.symmetric(horizontal: 32),
       decoration: BoxDecoration(
-          color: (this.index == 0)
-              ? Theme.of(context).accentColor.withOpacity(0.2)
-              : Colors.transparent,
-          border: Border(
-              top: BorderSide(width: 1, color: Theme.of(context).accentColor),
-              bottom:
-                  BorderSide(width: 1, color: Theme.of(context).accentColor))),
+        color: (this.index == 0)
+            ? Theme.of(context).accentColor.withOpacity(0.2)
+            : Colors.transparent,
+        //border: Border(top: BorderSide(width: 1, color: Theme.of(context).accentColor),bottom:BorderSide(width: 1, color: Theme.of(context).accentColor))
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,

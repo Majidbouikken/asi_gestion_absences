@@ -1,4 +1,5 @@
 import 'package:asi_gestion_absences/model/event.dart';
+import 'package:asi_gestion_absences/view/widgets/calendarTitle.dart';
 import 'package:asi_gestion_absences/view/widgets/eventListWidget.dart';
 import 'package:asi_gestion_absences/view/widgets/topBar.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,32 +31,23 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       height: 106,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                      child: RichText(
-                          textAlign: TextAlign.left,
-                          text: TextSpan(
-                              style: TextStyle(fontSize: 30),
-                              children: [
-                                TextSpan(
-                                    text: 'Today, ',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1),
-                                TextSpan(
-                                    text: '27th',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline2),
-                              ])),
+                    CalendarTitle(
+                      boldText: "Today,",
+                      leanText: "27th",
                     ),
                     SizedBox(
-                      height: 11,
+                      height: 12,
                     ),
                     EventList(
-                          todayEvents: Event.testEvents,
+                          todayEvents: Event.todayEvents,
                         ),
-                    // todo: add This week and this month events
+                    SizedBox(
+                      height: 12,
+                    ),
+                    CalendarTitle(
+                      boldText: "This",
+                      leanText: "week",
+                    ),// todo: add This week and this month events
                     Row(
                       children: [
                         Container(

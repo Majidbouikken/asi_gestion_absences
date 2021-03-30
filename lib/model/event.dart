@@ -14,7 +14,7 @@ class Event {
 
   // todo: to delete
   // test list
-  static List<Event> testEvents = [
+  static List<Event> todayEvents = [
     Event(
       "1",
       "Cours BDD",
@@ -48,23 +48,6 @@ class Event {
         Student.testStudents[5],
         Student.testStudents[4],
         Student.testStudents[3],
-        Student.testStudents[2],
-      ],
-    ),
-    Event(
-      "3",
-      "TP TDM",
-      "Shared preferences",
-      "Salle Visio",
-      DateTime(2021, 3, 31, 18, 0),
-      DateTime(2021, 3, 31, 21, 30),
-      "url",
-      <Student>[
-        Student.testStudents[3],
-        Student.testStudents[6],
-        Student.testStudents[5],
-        Student.testStudents[4],
-        Student.testStudents[7],
         Student.testStudents[2],
       ],
     ),
