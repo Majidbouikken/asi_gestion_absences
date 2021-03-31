@@ -2,31 +2,43 @@ import 'package:asi_gestion_absences/model/event.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'eventWidget.dart';
+import 'calendarStepperCell.dart';
+import 'calendarTitle.dart';
 
 class CalendarStepper extends StatelessWidget {
+  final String boldText;
+  final String leanText;
   final List<Event> todayEvents;
   final double _spaceBetweenDividers = 1.6;
 
-  const CalendarStepper({Key key, this.todayEvents}) : super(key: key);
+  const CalendarStepper({Key key, this.todayEvents, this.boldText, this.leanText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: 120,
-          child: Column(
-            children: _timeStepBuilder(
-                context, todayEvents.first.start, todayEvents.last.end),
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      CalendarTitle(
+        boldText: this.boldText,
+        leanText: this.leanText,
+      ),
+      SizedBox(
+        height: 12,
+      ),
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 120,
+            child: Column(
+              children: _timeStepBuilder(
+                  context, todayEvents.first.start, todayEvents.last.end),
+            ),
           ),
-        ),
-        Column(
-          children: _eventListBuilder(context, todayEvents),
-        )
-      ],
-    );
+          Column(
+            children: _eventListBuilder(context, todayEvents),
+          )
+        ],
+      ),
+    ]);
   }
 
   // builds time steps
@@ -94,9 +106,9 @@ class CalendarStepper extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               ((_startWithAnHourOrDivider == 0)
-                  ? startTime.hour + i ~/ 4
-                  : startTime.hour + i ~/ 4 + 1)
-                  .toString() +
+                          ? startTime.hour + i ~/ 4
+                          : startTime.hour + i ~/ 4 + 1)
+                      .toString() +
                   ":00",
               style: Theme.of(context).textTheme.headline6,
             ),
@@ -127,14 +139,14 @@ class CalendarStepper extends StatelessWidget {
       if (i == 0 && list.first.start.minute.remainder(15) != 0)
         _list.add(SizedBox(
             height:
-            _spaceBetweenDividers * list.first.start.minute.remainder(15)));
+                _spaceBetweenDividers * list.first.start.minute.remainder(15)));
       else if (i != 0)
         _list.add(SizedBox(
           height: _spaceBetweenDividers *
               ((list[i].start.hour * 60 + list[i].start.minute) -
                   (list[i - 1].end.hour * 60 + list[i - 1].end.minute)),
         ));
-      _list.add(EventWidget(
+      _list.add(CalendarStepperCell(
         event: list[i],
         spaceBetweenDividers: _spaceBetweenDividers,
         index: i,

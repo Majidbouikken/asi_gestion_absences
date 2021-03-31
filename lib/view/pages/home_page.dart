@@ -32,21 +32,17 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       height: 106,
                     ),
-                    CalendarTitle(
+
+                    // today's events
+                    // using calendar stepper
+                    CalendarStepper(
                       boldText: "Today,",
                       leanText: DateTime.now().day.toString() + "th",
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    // today's events
-                    CalendarStepper(
                       todayEvents: Event.todayEvents,
                     ),
-                    SizedBox(
-                      height: 12,
-                    ),
+
                     // this week events
+                    // using calendar column
                     CalendarColumn(
                       boldText: "This",
                       leanText: "Week",
@@ -56,6 +52,7 @@ class HomePage extends StatelessWidget {
                     ),
 
                     // this month events
+                    // using calendar column
                     CalendarColumn(
                       boldText: "This",
                       leanText: "month",
@@ -64,7 +61,7 @@ class HomePage extends StatelessWidget {
                       events: Event.weekEvents,
                     ),
                     SizedBox(
-                      heigh: 200
+                      height: 200,
                     )
                   ],
                 ),

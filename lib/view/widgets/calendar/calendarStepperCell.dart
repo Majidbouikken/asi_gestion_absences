@@ -2,12 +2,12 @@ import 'package:asi_gestion_absences/model/event.dart';
 import 'package:asi_gestion_absences/model/student.dart';
 import 'package:flutter/material.dart';
 
-class EventWidget extends StatelessWidget {
+class CalendarStepperCell extends StatelessWidget {
   final Event event;
   final double spaceBetweenDividers;
   final int index;
 
-  const EventWidget(
+  const CalendarStepperCell(
       {Key key, this.event, this.spaceBetweenDividers, this.index})
       : super(key: key);
 
