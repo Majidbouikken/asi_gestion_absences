@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:asi_gestion_absences/controller/themeController.dart';
 import 'package:asi_gestion_absences/model/event.dart';
 import 'package:asi_gestion_absences/model/student.dart';
 import 'package:asi_gestion_absences/view/pages/event_page.dart';
@@ -103,7 +106,8 @@ class CalendarStepperCell extends StatelessWidget {
           width: 24,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Colors.lightBlue, borderRadius: BorderRadius.circular(12)),
+              color: ThemeController.colors[Random().nextInt(ThemeController.colors.length)],
+              borderRadius: BorderRadius.circular(12)),
           child: Text(
             list[i].substring(0, 1),
             style: Theme.of(context).textTheme.headline5,

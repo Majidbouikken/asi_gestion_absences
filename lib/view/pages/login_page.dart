@@ -31,9 +31,19 @@ class _LoginPageState extends State<LoginPage> {
           // todo: add languages
           Padding(
             padding: EdgeInsets.symmetric(vertical: 8),
-            child: Text(
-              "English (United States)",
-              style: Theme.of(context).textTheme.headline4,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "English (United States)",
+                  style: Theme.of(context).textTheme.headline4,
+                ),
+                Icon(
+                  Icons.arrow_drop_down,
+                  color: Theme.of(context).textTheme.headline4.color,
+                  size: 20,
+                )
+              ],
             ),
           ),
           // todo: login forms

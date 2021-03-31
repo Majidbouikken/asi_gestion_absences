@@ -34,7 +34,7 @@ class AsiAPP extends StatelessWidget{
       routes: {
         EventPage.routeName: (context) => EventPage(),
       },
-      home: LoginPage(),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }

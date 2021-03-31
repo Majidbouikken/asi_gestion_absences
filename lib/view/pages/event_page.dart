@@ -41,6 +41,9 @@ class EventPage extends StatelessWidget {
           // tob bar
           TopBar(
             leftIcon: Icons.arrow_back,
+            onLeftTap: () {
+              Navigator.pop(context);
+            },
           ),
         ],
       ),

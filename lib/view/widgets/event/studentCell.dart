@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:asi_gestion_absences/controller/themeController.dart';
 import 'package:asi_gestion_absences/model/student.dart';
 import 'package:asi_gestion_absences/view/widgets/toggle.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +24,7 @@ class StudentCell extends StatelessWidget {
             width: 48,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-                color: Colors.lightBlue,
+                color: ThemeController.colors[Random().nextInt(ThemeController.colors.length)],
                 borderRadius: BorderRadius.circular(24)),
             child: Text(
               this.student.displayName.substring(0, 1),

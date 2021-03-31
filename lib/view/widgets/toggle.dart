@@ -30,7 +30,7 @@ class _PresenceToggleState extends State<PresenceToggle> {
         child: AnimatedContainer(
           duration: Duration(milliseconds: 100),
           margin: EdgeInsets.only(
-              top: 4, bottom: 4, right: value ? 4 : 20, left: value ? 20 : 4),
+              top: 4, bottom: 4, right: value ? 20 : 4, left: value ? 4 : 20),
           decoration: BoxDecoration(
               color: value
                   ? Theme.of(context).buttonColor

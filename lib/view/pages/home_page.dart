@@ -7,9 +7,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return GradientScaffold(
+      key: _scaffoldKey,
+      drawer: Drawer(
+        child: Center(child: Text("this is a drawer")),
+      ),
       child: Stack(
         children: [
           SingleChildScrollView(
@@ -58,6 +64,7 @@ class HomePage extends StatelessWidget {
           TopBar(
             leftIcon: Icons.menu,
             rightIcon: Icons.calendar_today_sharp,
+            onLeftTap: () => _scaffoldKey.currentState.openDrawer(),
           ),
           // add action button
           Align(

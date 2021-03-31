@@ -49,6 +49,7 @@ flutter:
 
   assets:
     - assets/esi_logo.svg
+    - assets/google_g_logo.svg
 
   fonts:
     - family: GothicA1
