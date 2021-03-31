@@ -55,6 +55,8 @@ class CalendarColumnCell extends StatelessWidget {
       _list.add(Material(
         color: Colors.transparent,
         child: InkWell(
+          highlightColor: Theme.of(context).accentColor.withOpacity(0.1),
+          splashColor: Theme.of(context).accentColor.withOpacity(0.2),
           onTap: () {
             Navigator.pushNamed(
               context,
