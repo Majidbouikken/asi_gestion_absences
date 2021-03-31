@@ -45,6 +45,22 @@ class EventPage extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
+
+          // add action button
+          Align(
+              alignment: Alignment.bottomRight,
+              child: Material(
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(8)),
+                  elevation: 0,
+                  color: Theme.of(context).buttonColor,
+                  child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                        height: 80,
+                        width: 80,
+                        alignment: Alignment.center,
+                        child: Icon(Icons.add)),
+                  )))
         ],
       ),
     );

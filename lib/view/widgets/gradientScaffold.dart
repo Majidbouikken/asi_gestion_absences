@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 class GradientScaffold extends StatelessWidget {
+  final Key scaffoldKey;
   final Widget child;
   final Drawer drawer;
 
-  const GradientScaffold({Key key, this.child, this.drawer}) : super(key: key);
+  const GradientScaffold({Key key, this.child, this.drawer, this.scaffoldKey}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: key,
+      key: this.scaffoldKey,
         drawer: this.drawer,
         body: Container(
             width: MediaQuery.of(context).size.width,

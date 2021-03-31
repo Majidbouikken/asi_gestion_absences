@@ -26,7 +26,7 @@ class _PresenceToggleState extends State<PresenceToggle> {
         width: 48,
         height: 32,
         decoration: BoxDecoration(
-            color: Colors.black45, borderRadius: BorderRadius.circular(8)),
+            color: (Theme.of(context).brightness == Brightness.dark)? Colors.black45:Colors.black.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
         child: AnimatedContainer(
           duration: Duration(milliseconds: 100),
           margin: EdgeInsets.only(
@@ -36,10 +36,13 @@ class _PresenceToggleState extends State<PresenceToggle> {
                   ? Theme.of(context).buttonColor
                   : Theme.of(context).accentColor,
               borderRadius: BorderRadius.circular(6)),
-          child: Icon(
-            value ? Icons.star : Icons.check,
-            size: 16,
-            color: Theme.of(context).primaryColor,
+          child: Transform.rotate(
+            angle: value? 3.14159265359/4 : 0,
+            child: Icon(
+              value ? Icons.add : Icons.check,
+              size: 16,
+              color: Colors.white,
+            ),
           ),
         ),
       ),

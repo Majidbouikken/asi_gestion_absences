@@ -22,7 +22,53 @@ class ThemeController with ChangeNotifier {
     notifyListeners();
   }
 
-  static ThemeData lightTheme = ThemeData();
+  static ThemeData lightTheme = ThemeData().copyWith(
+      primaryColor: LightColorData.primary,
+      accentColor: LightColorData.accent,
+      backgroundColor: LightColorData.bg1,
+      // this serves as the second background color
+      bottomAppBarColor: LightColorData.bg2,
+      canvasColor: LightColorData.bg2,
+      buttonColor: LightColorData.red,
+      cardColor: LightColorData.card,
+      dividerColor: LightColorData.divider,
+      textTheme: TextTheme(
+        headline1: TextStyle(
+            fontFamily: 'GothicA1',
+            fontWeight: FontWeight.w500,
+            color: LightColorData.primary,
+            fontSize: 44),
+        headline2: TextStyle(
+            fontFamily: 'GothicA1',
+            fontWeight: FontWeight.w200,
+            color: LightColorData.accent,
+            fontSize: 44),
+        headline3: TextStyle(
+            fontFamily: 'GothicA1',
+            fontWeight: FontWeight.w500,
+            color: LightColorData.primary,
+            fontSize: 16),
+        headline4: TextStyle(
+            fontFamily: 'GothicA1',
+            fontWeight: FontWeight.w500,
+            color: LightColorData.accent,
+            fontSize: 16),
+        headline5: TextStyle(
+            fontFamily: 'GothicA1',
+            fontWeight: FontWeight.w500,
+            color: LightColorData.primary,
+            fontSize: 12),
+        headline6: TextStyle(
+            fontFamily: 'GothicA1',
+            fontWeight: FontWeight.w500,
+            color: LightColorData.accent,
+            fontSize: 12),
+        button: TextStyle(
+            fontFamily: 'GothicA1',
+            fontWeight: FontWeight.w500,
+            color: LightColorData.primary,
+            fontSize: 20),
+      ));
 
   static ThemeData darkTheme = ThemeData.dark().copyWith(
       primaryColor: DarkColorData.primary,
@@ -79,6 +125,16 @@ class DarkColorData {
   static const Color bg1 = Color(0xff091c27);
   static const Color bg2 = Color(0xff041017);
   static const Color card = Color(0xff0f2430);
+  static const Color divider = Color(0xff1f303a);
+  static const Color red = Color(0xffee5651);
+}
+
+class LightColorData {
+  static const Color primary = Color(0xff536068);
+  static const Color accent = Color(0xff81919c);
+  static const Color bg1 = Colors.white;
+  static const Color bg2 = Color(0xffe0e0e0);
+  static const Color card = Color(0xffb0b0b0);
   static const Color divider = Color(0xff1f303a);
   static const Color red = Color(0xffee5651);
 }

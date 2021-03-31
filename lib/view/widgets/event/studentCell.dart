@@ -29,7 +29,7 @@ class StudentCell extends StatelessWidget {
             child: Text(
               this.student.displayName.substring(0, 1),
               style:
-                  Theme.of(context).textTheme.headline3.copyWith(fontSize: 32),
+                  Theme.of(context).textTheme.headline3.copyWith(fontSize: 32, color: Colors.white),
             ),
           ),
           SizedBox(

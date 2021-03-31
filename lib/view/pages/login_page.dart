@@ -1,3 +1,4 @@
+import 'package:asi_gestion_absences/view/pages/home_page.dart';
 import 'package:asi_gestion_absences/view/widgets/asiButton.dart';
 import 'package:asi_gestion_absences/view/widgets/editText.dart';
 import 'package:asi_gestion_absences/view/widgets/googleLoginButton.dart';
@@ -5,7 +6,6 @@ import 'package:asi_gestion_absences/view/widgets/gradientScaffold.dart';
 import 'package:asi_gestion_absences/view/widgets/orDivider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -13,15 +13,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  GoogleSignIn _googleSignIn;
-  bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
-    _googleSignIn = GoogleSignIn(scopes: [
-      "https://www.googleapis.com/auth/contacts.readonly",
-    ]);
   }
 
   @override
@@ -68,16 +63,18 @@ class _LoginPageState extends State<LoginPage> {
               AsiButton(
                   title: "Log in",
                   onPressed: () {
+                    Navigator.pushReplacement (context, MaterialPageRoute(builder: (BuildContext context) => HomePage()));
                     //context.read<AuthenticationController>().signIn("ha_bouikken_bahi_amar@esi.dz", "123456789");
                   }),
               OrDivider(),
               GoogleLoginButton(
-                onPressed: () async {
-                  try {
-                    await _googleSignIn.signIn();
+                onPressed: () {
+
+                  /*try {
+                    await GoogleSignIn().signIn();
                   } on Exception catch (e) {
                     print(e);
-                  }
+                  }*/
                 },
               ) //_handleSignIn
             ],

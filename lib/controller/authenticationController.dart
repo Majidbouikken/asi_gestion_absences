@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+/*import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthenticationController {
   final FirebaseAuth _firebaseAuth;
@@ -16,4 +16,4 @@ class AuthenticationController {
       return e.message;
     }
   }
-}
+}*/

@@ -110,7 +110,7 @@ class CalendarStepperCell extends StatelessWidget {
               borderRadius: BorderRadius.circular(12)),
           child: Text(
             list[i].substring(0, 1),
-            style: Theme.of(context).textTheme.headline5,
+            style: Theme.of(context).textTheme.headline5.copyWith(color: Colors.white),
           ),
         ),
       );
