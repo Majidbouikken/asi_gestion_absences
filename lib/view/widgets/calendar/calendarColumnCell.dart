@@ -2,11 +2,11 @@ import 'package:asi_gestion_absences/model/event.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 
-class DailyEventWidget extends StatelessWidget {
+class CalendarColumnCell extends StatelessWidget {
   final DateTime today;
   final List<Event> todayEvents;
 
-  const DailyEventWidget({Key key, this.today, this.todayEvents})
+  const CalendarColumnCell({Key key, this.today, this.todayEvents})
       : super(key: key);
 
   @override
@@ -31,12 +31,12 @@ class DailyEventWidget extends StatelessWidget {
             ),
             RichText(
                 text: TextSpan(children: [
-              TextSpan(
-                  text: formatDate(this.today, [dd]),
-                  style: Theme.of(context).textTheme.headline3),
-              TextSpan(
-                  text: " th", style: Theme.of(context).textTheme.headline4),
-            ]))
+                  TextSpan(
+                      text: formatDate(this.today, [dd]),
+                      style: Theme.of(context).textTheme.headline3),
+                  TextSpan(
+                      text: " th", style: Theme.of(context).textTheme.headline4),
+                ]))
           ],
         ),
         Column(
@@ -53,7 +53,11 @@ class DailyEventWidget extends StatelessWidget {
       duration = list[i].end.difference(list[i].start);
       _list.add(Container(
         width: MediaQuery.of(context).size.width - 120,
-        padding: (i==0)?EdgeInsets.only(right: 32, left: 32, bottom: 16):EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+        padding: EdgeInsets.only(
+            left: 32,
+            top: (i == 0) ? 0 : 16,
+            right: 32,
+            bottom: (i == list.length - 1) ? 32 : 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,

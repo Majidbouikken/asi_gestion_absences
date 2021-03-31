@@ -16,13 +16,16 @@ class Event {
       this.end, this.hangoutLink, this.attendees);
 
   // method to get events between a two defined dates
-  static List<Event> getEventsBetweenTime(List<Event> list, DateTime startDate,
-      DateTime endDate) {
+  static List<Event> getEventsBetweenTime(List<Event> list, int startDay,
+      int endDate) {
     List<Event> _list = <Event>[];
+    DateTime _now = new DateTime.now();
+    DateTime _today = DateTime(_now.year, _now.month, _now.day);
+    DateTime _startDate = _today.add(Duration(days: startDay));
+    DateTime _endDate = _today.add(Duration(days: endDate));
     for (int i = 0; i < list.length; i++) {
-      if (!(list[i].start.isAfter(startDate) &&
-          list[i].start.isBefore(endDate))) _list.add (list[i]);
-      i++;
+      if (list[i].start.isAfter(_startDate) &&
+          list[i].start.isBefore(_endDate)) _list.add (list[i]);
     }
     return _list;
   }
@@ -35,8 +38,8 @@ class Event {
       "Cours BDD",
       "Modèle Relationel",
       "AP1",
-      DateTime(2021, 3, 30, 13, 30),
-      DateTime(2021, 3, 30, 15, 30),
+      DateTime(2021, 3, 31, 13, 30),
+      DateTime(2021, 3, 31, 15, 30),
       "url",
       <Student>[
         Student.testStudents[0],
@@ -54,8 +57,8 @@ class Event {
       "Cours ASI",
       "Archimate",
       "A4",
-      DateTime(2021, 3, 30, 15, 40),
-      DateTime(2021, 3, 30, 17, 10),
+      DateTime(2021, 3, 31, 15, 40),
+      DateTime(2021, 3, 31, 17, 10),
       "url",
       <Student>[
         Student.testStudents[7],
@@ -125,6 +128,41 @@ class Event {
       "AP1",
       DateTime(2021, 4, 2, 10, 10),
       DateTime(2021, 4, 2, 12, 10),
+      "url",
+      <Student>[
+        Student.testStudents[7],
+        Student.testStudents[6],
+        Student.testStudents[5],
+        Student.testStudents[4],
+        Student.testStudents[3],
+        Student.testStudents[2],
+        Student.testStudents[7],
+        Student.testStudents[6],
+        Student.testStudents[5],
+        Student.testStudents[4],
+        Student.testStudents[3],
+        Student.testStudents[2],
+        Student.testStudents[7],
+        Student.testStudents[6],
+        Student.testStudents[5],
+        Student.testStudents[4],
+        Student.testStudents[3],
+        Student.testStudents[2],
+        Student.testStudents[7],
+        Student.testStudents[6],
+        Student.testStudents[5],
+        Student.testStudents[4],
+        Student.testStudents[3],
+        Student.testStudents[2],
+      ],
+    ),
+    Event(
+      "7",
+      "SGBDR",
+      "MySQL",
+      "Salle Visio",
+      DateTime(2021, 4, 2, 13, 30),
+      DateTime(2021, 4, 2, 14, 30),
       "url",
       <Student>[
         Student.testStudents[7],

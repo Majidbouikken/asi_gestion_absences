@@ -1,13 +1,14 @@
-import 'package:asi_gestion_absences/view/widgets/eventWidget.dart';
+import 'package:asi_gestion_absences/model/event.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../model/event.dart';
 
-class EventList extends StatelessWidget {
+import 'eventWidget.dart';
+
+class CalendarStepper extends StatelessWidget {
   final List<Event> todayEvents;
   final double _spaceBetweenDividers = 1.6;
 
-  const EventList({Key key, this.todayEvents}) : super(key: key);
+  const CalendarStepper({Key key, this.todayEvents}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -93,9 +94,9 @@ class EventList extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               ((_startWithAnHourOrDivider == 0)
-                          ? startTime.hour + i ~/ 4
-                          : startTime.hour + i ~/ 4 + 1)
-                      .toString() +
+                  ? startTime.hour + i ~/ 4
+                  : startTime.hour + i ~/ 4 + 1)
+                  .toString() +
                   ":00",
               style: Theme.of(context).textTheme.headline6,
             ),
@@ -126,7 +127,7 @@ class EventList extends StatelessWidget {
       if (i == 0 && list.first.start.minute.remainder(15) != 0)
         _list.add(SizedBox(
             height:
-                _spaceBetweenDividers * list.first.start.minute.remainder(15)));
+            _spaceBetweenDividers * list.first.start.minute.remainder(15)));
       else if (i != 0)
         _list.add(SizedBox(
           height: _spaceBetweenDividers *

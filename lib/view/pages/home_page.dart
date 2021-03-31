@@ -1,7 +1,7 @@
 import 'package:asi_gestion_absences/model/event.dart';
-import 'package:asi_gestion_absences/view/widgets/WeeklyEventWidget.dart';
-import 'package:asi_gestion_absences/view/widgets/calendarTitle.dart';
-import 'package:asi_gestion_absences/view/widgets/eventListWidget.dart';
+import 'package:asi_gestion_absences/view/widgets/calendar/calendarColumn.dart';
+import 'package:asi_gestion_absences/view/widgets/calendar/calendarStepper.dart';
+import 'file:///C:/Users/Abdelmadjid/AndroidStudioProjects/asi_gestion_absences/lib/view/widgets/calendar/calendarTitle.dart';
 import 'package:asi_gestion_absences/view/widgets/topBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -34,24 +34,37 @@ class HomePage extends StatelessWidget {
                     ),
                     CalendarTitle(
                       boldText: "Today,",
-                      leanText: "27th",
+                      leanText: DateTime.now().day.toString() + "th",
                     ),
                     SizedBox(
                       height: 12,
                     ),
-                    EventList(
-                          todayEvents: Event.todayEvents,
-                        ),
+                    // today's events
+                    CalendarStepper(
+                      todayEvents: Event.todayEvents,
+                    ),
                     SizedBox(
                       height: 12,
                     ),
-                    CalendarTitle(
+                    // this week events
+                    CalendarColumn(
                       boldText: "This",
-                      leanText: "week",
-                    ),// todo: add This week and this month events
-                    SizedBox(height: 12,),
-                    WeeklyEventWidget(
+                      leanText: "Week",
+                      startingDay: 1,
+                      endingDay: 7,
                       events: Event.weekEvents,
+                    ),
+
+                    // this month events
+                    CalendarColumn(
+                      boldText: "This",
+                      leanText: "month",
+                      startingDay: 7,
+                      endingDay: 30,
+                      events: Event.weekEvents,
+                    ),
+                    SizedBox(
+                      heigh: 200
                     )
                   ],
                 ),
