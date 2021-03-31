@@ -38,6 +38,9 @@ class CalendarStepper extends StatelessWidget {
           )
         ],
       ),
+      SizedBox(
+        height: 12,
+      ),
     ]);
   }
 
@@ -110,7 +113,7 @@ class CalendarStepper extends StatelessWidget {
                           : startTime.hour + i ~/ 4 + 1)
                       .toString() +
                   ":00",
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.headline5,
             ),
           );
         } else if (_index == 1) {

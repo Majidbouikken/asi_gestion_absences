@@ -37,6 +37,7 @@ class _EditTextState extends State<EditText> {
     return Container(
       height: 44,
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 16),
       alignment: Alignment.center,
       decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
@@ -52,15 +53,16 @@ class _EditTextState extends State<EditText> {
         autocorrect: widget.isPassword ? false : true,
         focusNode: _focusNode,
         keyboardType: widget.textInputType,
+        style: Theme.of(context).textTheme.headline3,
         decoration: InputDecoration(
-          border: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          errorBorder: InputBorder.none,
-          disabledBorder: InputBorder.none,
-          contentPadding:
-              EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
-          hintText: this.widget.hintText,
+            border: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            enabledBorder: InputBorder.none,
+            errorBorder: InputBorder.none,
+            disabledBorder: InputBorder.none,
+
+            hintText: this.widget.hintText,
+            hintStyle: Theme.of(context).textTheme.headline4
         ),
       ),
     );
