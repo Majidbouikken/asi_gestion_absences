@@ -1,4 +1,5 @@
 import 'package:asi_gestion_absences/controller/themeController.dart';
+import 'package:asi_gestion_absences/view/pages/event_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +31,7 @@ class AsiAPP extends StatelessWidget{
     return MaterialApp(
       title: 'ASI Absence Checker',
       theme: theme.getTheme(),
-      home: HomePage(),
+      home: EventPage(),
       debugShowCheckedModeBanner: false,
     );
   }
