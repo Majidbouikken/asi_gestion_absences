@@ -31,7 +31,10 @@ class AsiAPP extends StatelessWidget{
     return MaterialApp(
       title: 'ASI Absence Checker',
       theme: theme.getTheme(),
-      home: EventPage(),
+      routes: {
+        EventPage.routeName: (context) => EventPage(),
+      },
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }

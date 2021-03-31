@@ -30,9 +30,6 @@ class CalendarColumn extends StatelessWidget {
             boldText: this.boldText,
             leanText: this.leanText,
           ),
-          SizedBox(
-            height: 12,
-          ),
         ],
       );
       return Column(

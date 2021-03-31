@@ -1,5 +1,6 @@
 import 'package:asi_gestion_absences/model/event.dart';
 import 'package:asi_gestion_absences/model/student.dart';
+import 'package:asi_gestion_absences/view/pages/event_page.dart';
 import 'package:flutter/material.dart';
 
 class CalendarStepperCell extends StatelessWidget {
@@ -14,64 +15,77 @@ class CalendarStepperCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Duration duration = this.event.end.difference(this.event.start);
-    return Container(
-      height: (this.spaceBetweenDividers * duration.inMinutes),
-      width: MediaQuery.of(context).size.width - 120,
-      padding: EdgeInsets.symmetric(horizontal: 32),
-      decoration: BoxDecoration(
-        color: (this.index == 0)
-            ? Theme.of(context).accentColor.withOpacity(0.2)
-            : Colors.transparent,
-        //border: Border(top: BorderSide(width: 1, color: Theme.of(context).accentColor),bottom:BorderSide(width: 1, color: Theme.of(context).accentColor))
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            this.event.summary,
-            style: Theme.of(context).textTheme.headline3,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            EventPage.routeName,
+            arguments: EventPageArguemnts(this.event),
+          );
+        },
+        child: Container(
+          height: (this.spaceBetweenDividers * duration.inMinutes),
+          width: MediaQuery.of(context).size.width - 120,
+          padding: EdgeInsets.symmetric(horizontal: 32),
+          decoration: BoxDecoration(
+            color: (this.index == 0)
+                ? Theme.of(context).accentColor.withOpacity(0.2)
+                : Colors.transparent,
+            //border: Border(top: BorderSide(width: 1, color: Theme.of(context).accentColor),bottom:BorderSide(width: 1, color: Theme.of(context).accentColor))
           ),
-          SizedBox(
-            height: 8,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                this.event.start.hour.toString() +
-                    ":" +
-                    this.event.start.minute.toString().padLeft(2, '0') +
-                    " - " +
-                    this.event.end.hour.toString() +
-                    ":" +
-                    this.event.end.minute.toString().padLeft(2, '0'),
-                style: Theme.of(context).textTheme.headline6,
+                this.event.summary,
+                style: Theme.of(context).textTheme.headline3,
               ),
-              Text(
-                (() {
-                  // calculate difference between start and end
-                  String durationString = "";
-                  int minutes = (duration.inMinutes - duration.inHours * 60);
-                  durationString = duration.inHours.toString() +
-                      "h " +
-                      minutes.toString().padLeft(2, '0') +
-                      "m";
-                  return durationString;
-                }()),
-                style: Theme.of(context).textTheme.headline5,
+              SizedBox(
+                height: 8,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    this.event.start.hour.toString() +
+                        ":" +
+                        this.event.start.minute.toString().padLeft(2, '0') +
+                        " - " +
+                        this.event.end.hour.toString() +
+                        ":" +
+                        this.event.end.minute.toString().padLeft(2, '0'),
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  Text(
+                    (() {
+                      // calculate difference between start and end
+                      String durationString = "";
+                      int minutes =
+                          (duration.inMinutes - duration.inHours * 60);
+                      durationString = duration.inHours.toString() +
+                          "h " +
+                          minutes.toString().padLeft(2, '0') +
+                          "m";
+                      return durationString;
+                    }()),
+                    style: Theme.of(context).textTheme.headline5,
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Row(
+                children: _studentsAvatarsBuilder(
+                    context, Student.getDisplayNames(this.event.attendees), 2),
               )
             ],
           ),
-          SizedBox(
-            height: 8,
-          ),
-          Row(
-            children: _studentsAvatarsBuilder(
-                context, Student.getDisplayNames(this.event.attendees), 2),
-          )
-        ],
+        ),
       ),
     );
   }
