@@ -30,7 +30,7 @@ class AsiAPP extends StatelessWidget{
     return MaterialApp(
       title: 'ASI Absence Checker',
       theme: theme.getTheme(),
-      home: LoginPage(),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
